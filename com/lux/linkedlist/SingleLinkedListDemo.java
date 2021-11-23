@@ -17,6 +17,19 @@ public class SingleLinkedListDemo {
         sLinkedList.addByOrder(hero1);
         // 显示
         sLinkedList.show();
+        // 修改
+        HeroNode hero = new HeroNode(2, "luhao", "Kyrin");
+        sLinkedList.update(hero);
+        sLinkedList.show();
+        // 删除
+        sLinkedList.del(2);
+        sLinkedList.show();
+        sLinkedList.del(1);
+        sLinkedList.show();
+        sLinkedList.del(4);
+        sLinkedList.show();
+        sLinkedList.del(3);
+        sLinkedList.show();
     }
 }
 
@@ -75,6 +88,51 @@ class SingleLinkedList {
             if(temp == null) break;
             System.out.println(temp);
             temp = temp.next;
+        }
+    }
+
+    // 修改节点信息（除了no）
+    public void update(HeroNode changedHero){
+        // 判断链表是否为空
+        if(head.next == null){
+            System.out.println("This list is empty");
+            return;
+        }
+        // 寻找该节点
+        HeroNode temp = head.next;
+        boolean flag = false; // 默认没有这个节点
+        while(true){
+            if(temp == null) break; // 到达结尾了
+            if(temp.no == changedHero.no){
+                flag = true; // 找到了
+                break;
+            }
+            temp = temp.next;
+        }
+        if(flag){ // 找到了
+            temp.name = changedHero.name;
+            temp.nickName = changedHero.nickName;
+        }else{ // 没找到
+            System.out.println("Can't find target hero");
+        }
+    }
+
+    // 删除节点
+    public void del(int no) {
+        HeroNode temp = head;
+        boolean flag = false; // 是否找到
+        while(true){
+            if(temp.next == null) break; // 到达末尾
+            if(temp.next.no == no){
+                flag = true; // 找到了
+                break;
+            }
+            temp = temp.next;
+        }
+        if(flag){ // 找到了
+            temp.next = temp.next.next;
+        }else{ // 没找到
+            System.out.println("Can't find target Hero");
         }
     }
 } 

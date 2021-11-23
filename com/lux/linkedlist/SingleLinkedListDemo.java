@@ -11,21 +11,21 @@ public class SingleLinkedListDemo {
         // 创建链表
         SingleLinkedList sLinkedList = new SingleLinkedList();
         // 添加英雄
-        sLinkedList.push(hero1);
-        sLinkedList.push(hero2);
-        sLinkedList.push(hero3);
-        sLinkedList.push(hero4);
+        sLinkedList.addByOrder(hero2);
+        sLinkedList.addByOrder(hero4);
+        sLinkedList.addByOrder(hero3);
+        sLinkedList.addByOrder(hero1);
         // 显示
         sLinkedList.show();
     }
 }
 
-// 定义一个单链表 来管理英雄
+// 定义一个单链表 来管理英雄 
 class SingleLinkedList {
     // 初始化头节点，且不要动
     private HeroNode head = new HeroNode(0, "", "");
 
-    // 添加节点
+    // 添加节点-- 按照添加的先后顺序
     public void push(HeroNode newNode){
         // 找到当前链表节点的最后节点，让其next指向新节点
         HeroNode temp = head;
@@ -34,6 +34,33 @@ class SingleLinkedList {
             temp = temp.next;
         }
         temp.next = newNode;
+    }
+
+    // 按照英雄序号来添加
+    public void addByOrder(HeroNode newHero) { 
+        HeroNode temp = head;
+        boolean flag = false; // 默认newhero编号不存在
+        // temp的目标位置是newHero位置的前一个位置
+        while(true){
+            // 已经到达结尾
+            if(temp.next == null){
+                break;
+            }
+            if(temp.next.no > newHero.no){
+                break;
+            }else if(temp.next.no == newHero.no){
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        // 判断flag
+        if(flag){ // 已经有这个编号了
+            System.out.println("This hero has existed");
+        }else{
+            newHero.next = temp.next;
+            temp.next = newHero;
+        }
     }
 
     // 显示链表

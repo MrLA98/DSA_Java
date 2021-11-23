@@ -38,6 +38,10 @@ class SingleLinkedList {
     // 初始化头节点，且不要动
     private HeroNode head = new HeroNode(0, "", "");
 
+    public HeroNode getHead() {
+        return head;
+    }
+
     // 添加节点-- 按照添加的先后顺序
     public void push(HeroNode newNode){
         // 找到当前链表节点的最后节点，让其next指向新节点

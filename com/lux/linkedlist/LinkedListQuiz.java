@@ -1,5 +1,7 @@
 package com.lux.linkedlist;
 
+import java.util.Stack;
+
 public class LinkedListQuiz {
     public static void main(String[] args) {
         // 创建英雄
@@ -27,6 +29,7 @@ public class LinkedListQuiz {
         sLinkedList.show();
 
         // quiz4
+        //quiz4stack(sLinkedList.getHead());
         quiz4(sLinkedList.getHead().next);
     }
 
@@ -83,5 +86,17 @@ public class LinkedListQuiz {
         if(head == null) return;
         quiz4(head.next);
         System.out.println(head);
+    }
+    public static void quiz4stack(HeroNode head){ // 用栈
+        if(head.next == null) return;
+        HeroNode cur = head.next;
+        Stack<HeroNode> heroStack = new Stack<HeroNode>();
+        while(cur != null){
+            heroStack.push(cur);
+            cur = cur.next;
+        }
+        while(!heroStack.empty()){
+            System.out.println(heroStack.pop());
+        }
     }
 }

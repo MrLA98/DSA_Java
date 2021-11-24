@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class ArrayStackDemo {
     public static void main(String[] args) throws InterruptedException {
         ArrayStack aStack = new ArrayStack(4);
-        boolean loop = true;
         Scanner scanner = new Scanner(System.in);
         String key = "";
-        while (loop) {
+        while (true) {
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.println("push -- add number");
@@ -41,7 +40,6 @@ public class ArrayStackDemo {
                 aStack.show();
                 break;
             case "exit":
-                loop = false;
                 scanner.close();
                 return;
             default:

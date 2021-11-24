@@ -23,7 +23,7 @@ class CircleSingleLinkedList {
     private Boy first;
     private int childNums;
 
-    // 添加小孩节点
+    // 构造器 -- 添加小孩节点
     public CircleSingleLinkedList(int nums) {
         first = new Boy(-1);
         childNums = nums;

@@ -9,7 +9,7 @@ public class LinkedListQuiz {
         HeroNode hero2 = new HeroNode(2, "LuJunyi", "yuqiling");
         HeroNode hero3 = new HeroNode(3, "WuYong", "smart");
         HeroNode hero4 = new HeroNode(4, "LinChong", "puma");
-        
+
         // 创建链表
         SingleLinkedList sLinkedList = new SingleLinkedList();
         // 添加英雄
@@ -29,16 +29,17 @@ public class LinkedListQuiz {
         sLinkedList.show();
 
         // quiz4
-        //quiz4stack(sLinkedList.getHead());
+        // quiz4stack(sLinkedList.getHead());
         quiz4(sLinkedList.getHead().next);
     }
 
     // 获取单链表的节点个数，有头节点，不统计头节点
-    public static int quiz1(HeroNode head){
-        if(head.next == null) return 0;
+    public static int quiz1(HeroNode head) {
+        if (head.next == null)
+            return 0;
         int count = 0;
         HeroNode cur = head.next;
-        while(cur != null){
+        while (cur != null) {
             ++count;
             cur = cur.next;
         }
@@ -46,22 +47,25 @@ public class LinkedListQuiz {
     }
 
     // 获取单链表的倒数第k个节点
-    public static HeroNode quiz2(HeroNode head, int index){
-        if(head.next == null) return null;
+    public static HeroNode quiz2(HeroNode head, int index) {
+        if (head.next == null)
+            return null;
         int size = quiz1(head);
-        if(index <= 0 || index > size) return null;
+        if (index <= 0 || index > size)
+            return null;
         HeroNode cur = head.next;
-        for(int i = 0; i < size-index; ++i){
+        for (int i = 0; i < size - index; ++i) {
             cur = cur.next;
         }
         return cur;
     }
 
     // 单链表的反转
-    public static void quiz3(HeroNode head){
-        if(head.next == null || head.next.next == null) return;
+    public static void quiz3(HeroNode head) {
+        if (head.next == null || head.next.next == null)
+            return;
         HeroNode last = null, cur = null, next = head.next;
-        while(next != null){
+        while (next != null) {
             cur = next;
             next = next.next;
             cur.next = last;
@@ -69,10 +73,12 @@ public class LinkedListQuiz {
         }
         head.next = cur;
     }
-    public static void reverse(HeroNode head){ // 头插法
-        if(head.next == null || head.next.next == null) return;
+
+    public static void reverse(HeroNode head) { // 头插法
+        if (head.next == null || head.next.next == null)
+            return;
         HeroNode rvsHead = new HeroNode(0, "", ""), cur = head.next;
-        while(cur != null){
+        while (cur != null) {
             HeroNode temp = cur;
             cur = cur.next;
             temp.next = rvsHead.next;
@@ -82,20 +88,23 @@ public class LinkedListQuiz {
     }
 
     // 从尾到头打印单链表
-    public static void quiz4(HeroNode head){
-        if(head == null) return;
+    public static void quiz4(HeroNode head) {
+        if (head == null)
+            return;
         quiz4(head.next);
         System.out.println(head);
     }
-    public static void quiz4stack(HeroNode head){ // 用栈
-        if(head.next == null) return;
+
+    public static void quiz4stack(HeroNode head) { // 用栈
+        if (head.next == null)
+            return;
         HeroNode cur = head.next;
         Stack<HeroNode> heroStack = new Stack<HeroNode>();
-        while(cur != null){
+        while (cur != null) {
             heroStack.push(cur);
             cur = cur.next;
         }
-        while(!heroStack.empty()){
+        while (!heroStack.empty()) {
             System.out.println(heroStack.pop());
         }
     }

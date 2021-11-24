@@ -7,7 +7,7 @@ public class CircleArrayQueueDemo {
         testCircleArray();
     }
 
-    public static void testCircleArray(){
+    public static void testCircleArray() {
         // 测试
         // 初始化一个队列
         CircleArray circleArray = new CircleArray(5);
@@ -15,7 +15,7 @@ public class CircleArrayQueueDemo {
         Scanner scanner = new Scanner(System.in); // 扫描器
         boolean loop = true;
         // 菜单
-        while(loop) {
+        while (loop) {
             System.out.println("s(show): show the queue");
             System.out.println("e(exit): exit the menu");
             System.out.println("a(add): add an item");
@@ -24,42 +24,42 @@ public class CircleArrayQueueDemo {
             System.out.println("l(length): length of the queue");
             key = scanner.next().charAt(0);
             switch (key) {
-                case 's': // 展示队列
-                    circleArray.show();
-                    break;
-                case 'e': // 退出程序
-                    scanner.close();
-                    loop = false;
-                    break;
-                case 'a': // 添加数据
-                    System.out.println("please input a number");
-                    int val = scanner.nextInt();
-                    circleArray.push(val);
-                    break;
-                case 'g': // 取出数据
-                    try {
-                        int get = circleArray.pop();
-                        System.out.println("get a number = " + get);
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case 'h': // 队列头部的数据
-                    try {
-                        int head = circleArray.top();
-                        System.out.println("head = " + head);
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case 'l': // 队列有效元素个数
-                    System.out.println("length = " + circleArray.size());
-                    break;
-                default:
-                    break;
+            case 's': // 展示队列
+                circleArray.show();
+                break;
+            case 'e': // 退出程序
+                scanner.close();
+                loop = false;
+                break;
+            case 'a': // 添加数据
+                System.out.println("please input a number");
+                int val = scanner.nextInt();
+                circleArray.push(val);
+                break;
+            case 'g': // 取出数据
+                try {
+                    int get = circleArray.pop();
+                    System.out.println("get a number = " + get);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case 'h': // 队列头部的数据
+                try {
+                    int head = circleArray.top();
+                    System.out.println("head = " + head);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case 'l': // 队列有效元素个数
+                System.out.println("length = " + circleArray.size());
+                break;
+            default:
+                break;
             }
         }
-        
+
         System.out.println("exit the programe");
     }
 
@@ -71,9 +71,9 @@ class CircleArray {
     private int rear; // 队列尾部的下一个
     private int front; // 队列头部
     private int[] arr; // 数组
-    
+
     // 构造方法
-    public CircleArray(int arrMaxSize){
+    public CircleArray(int arrMaxSize) {
         maxSize = arrMaxSize;
         // rear = front = 0;
         arr = new int[maxSize];
@@ -90,9 +90,9 @@ class CircleArray {
     }
 
     // 添加元素
-    public void push(int item){
+    public void push(int item) {
         // 判断是不是满了
-        if(isFull()){
+        if (isFull()) {
             System.out.println("The queue is full");
             return;
         }
@@ -105,7 +105,7 @@ class CircleArray {
     // 取数据
     public int pop() {
         // 判断是不是为空
-        if(isEmpty()){
+        if (isEmpty()) {
             throw new RuntimeException("The queue is empty");
         }
         // 保存队首变量
@@ -123,14 +123,14 @@ class CircleArray {
     // 显示队列数据
     public void show() {
         // 从front开始，遍历有效个数
-        for(int i = front; i < front + size(); ++i){
-            System.out.println("arr[" + i%maxSize + "] = " + arr[i%maxSize]);
+        for (int i = front; i < front + size(); ++i) {
+            System.out.println("arr[" + i % maxSize + "] = " + arr[i % maxSize]);
         }
     }
 
     // 显示队首
-    public int top(){
-        if(isEmpty()){
+    public int top() {
+        if (isEmpty()) {
             throw new RuntimeException("The queue is empty");
         }
         return arr[front];

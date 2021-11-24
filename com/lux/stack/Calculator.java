@@ -8,16 +8,14 @@ public class Calculator {
         CalStack operStack = new CalStack(10);
         int num1 = 0, num2 = 0, oper = 0, res = 0;
         String keepNum = "";
-        for(int i = 0; i < expression.length(); ++i){
+        for (int i = 0; i < expression.length(); ++i) {
             // 取得一个字符
             char ch = expression.charAt(i);
             // 判断是数字还是符号
-            if(isOper(ch)){ // 是符号
-                if(
-                    !operStack.isEmpty() // 符号栈不为空
-                    && priority(ch) <= priority(operStack.top())
-                ){  // 且该符号优先级比栈顶符号优先级小或相等
-                    // 两栈取顶计算
+            if (isOper(ch)) { // 是符号
+                if (!operStack.isEmpty() // 符号栈不为空
+                        && priority(ch) <= priority(operStack.top())) { // 且该符号优先级比栈顶符号优先级小或相等
+                                                                        // 两栈取顶计算
                     num1 = numStack.pop();
                     num2 = numStack.pop();
                     oper = operStack.pop();
@@ -26,24 +24,22 @@ public class Calculator {
                     numStack.push(res);
                     // 该符号放入符号栈
                     operStack.push(ch);
-                }
-                else{ // 符号栈为空，或不为空且优先级比栈顶高，直接入栈 
+                } else { // 符号栈为空，或不为空且优先级比栈顶高，直接入栈
                     operStack.push(ch);
                 }
-            }else{ // 是数字
+            } else { // 是数字
                 keepNum += ch; // 将连续的数字符号拼接起来
-                if(
-                    i == expression.length()-1 // 最后一个是数字，直接入栈
-                    || isOper(expression.charAt(i+1)) // 下一个是符号，直接入栈
-                ){
+                if (i == expression.length() - 1 // 最后一个是数字，直接入栈
+                        || isOper(expression.charAt(i + 1)) // 下一个是符号，直接入栈
+                ) {
                     numStack.push(Integer.parseInt(keepNum));
                     keepNum = "";
                 }
-                
+
             }
         }
         // 数栈和符号栈弹出元素依次运算
-        while(!operStack.isEmpty()){
+        while (!operStack.isEmpty()) {
             num1 = numStack.pop();
             num2 = numStack.pop();
             oper = operStack.pop();
@@ -57,10 +53,10 @@ public class Calculator {
     // 工具函数
     // 返回运算符的优先级
     // 优先级用数字表示，数字越大优先级越大
-    public static int priority(int oper){
-        if(oper == '*' || oper == '/'){
+    public static int priority(int oper) {
+        if (oper == '*' || oper == '/') {
             return 1;
-        } else if(oper == '+' || oper == '-'){
+        } else if (oper == '+' || oper == '-') {
             return 0;
         } else { // 假定只有+-*/
             return -1;
@@ -69,25 +65,25 @@ public class Calculator {
 
     // 判断是不是一个运算符
     public static boolean isOper(char val) {
-        return val == '+' || val == '-' || val == '*' || val =='/';
+        return val == '+' || val == '-' || val == '*' || val == '/';
     }
 
     // 计算方法
-    public static int cal(int num1, int num2, int oper){
+    public static int cal(int num1, int num2, int oper) {
         int res = 0;
         switch (oper) {
-            case '+':
-                res = num1 + num2;
-                break;
-            case '-':
-                res = num2 - num1; // 注意顺序
-                break;
-            case '*':
-                res = num1 * num2;
-                break;
-            case '/':
-                res = num2 / num1; // 注意顺序
-                break;
+        case '+':
+            res = num1 + num2;
+            break;
+        case '-':
+            res = num2 - num1; // 注意顺序
+            break;
+        case '*':
+            res = num1 * num2;
+            break;
+        case '/':
+            res = num2 / num1; // 注意顺序
+            break;
         }
         return res;
     }

@@ -9,11 +9,11 @@ package com.lux.linkedlist;
   - 依次类推，直到所有人出列为止。
   - 产生一个出队编号序列
 */
-public class Josephu {
+public class Joseph {
     public static void main(String[] args) {
-        CircleSingleLinkedList cirBoys = new CircleSingleLinkedList(15);
+        CircleSingleLinkedList cirBoys = new CircleSingleLinkedList(12);
         cirBoys.show();
-
+        cirBoys.joseph(2, 3);
     }
 }
 
@@ -72,7 +72,26 @@ class CircleSingleLinkedList {
         while (helper.next != first) {
             helper = helper.next;
         }
-
+        // 让first移动到start位置
+        for (int j = 0; j < startNo - 1; ++j) {
+            first = first.next;
+            helper = helper.next;
+        }
+        while (true) {
+            // 圈里只剩一个人
+            if (helper == first)
+                break;
+            for (int j = 0; j < countNum - 1; ++j) {
+                first = first.next;
+                helper = helper.next;
+            }
+            // 此时有一个小孩出圈
+            System.out.println("小孩[" + first.no + "]出圈~");
+            // 删掉这个小孩
+            first = first.next;
+            helper.next = first;
+        }
+        System.out.println("留在圈里的小孩是[" + first.no + "]");
     }
 }
 

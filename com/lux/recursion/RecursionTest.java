@@ -16,17 +16,17 @@ public class RecursionTest {
     public static void test(int n) {
         // 顺序打印
         System.out.println("n = " + n);
-        if( n > 1) {
-            test(n-1);
+        if (n > 1) {
+            test(n - 1);
         }
         // 逆序打印
         // System.out.println("n = " + n);
     }
 
     // 阶乘
-    public static int fact(int n){
-        if(n <= 1) return 1;
-        return n*fact(n-1);
+    public static int fact(int n) {
+        if (n <= 1)
+            return 1;
+        return n * fact(n - 1);
     }
 }
-

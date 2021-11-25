@@ -3,7 +3,7 @@ package com.lux.recursion;
 public class NQueens {
 
     // 数组大小
-    int Queens = 7;
+    int Queens = 4;
     int[] arr = new int[Queens];
     static int count = 0;
 

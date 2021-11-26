@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 public class Checker {
-    // for test
+	// for test
 	public static void comparator(int[] arr) {
 		Arrays.sort(arr);
 	}
@@ -63,24 +63,25 @@ public class Checker {
 
 	// for test
 	public static void main(String[] args) {
-		int testTime = 1;
+		int testTime = 100;
 		int maxSize = 500000;
-		int maxValue = 100;
+		int maxValue = 500000;
 		boolean succeed = true;
-        // Bubble sortFunc = new Bubble(); // 冒泡 -- 3.52s -- 42.333s
-        // Selection sortFunc = new Selection(); // 选择 -- 2.27s -- 19.207s
-        // Insertion sortFunc = new Insertion(); // 插入 -- 1.64s -- 12.435s
-		Shell sortFunc = new Shell(); // 希尔 -- 1.93s -- 11.811s
+		// Bubble sortFunc = new Bubble(); // 冒泡
+		// Selection sortFunc = new Selection(); // 选择
+		Insertion sortFunc = new Insertion(); // 插入
+		// Shell sortFunc = new Shell(); // 希尔
+		// Quick sortFunc = new Quick(); // 快排
 
-        Date date1 = new Date();
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date1Str = sDateFormat.format(date1);
-        System.out.println("测试前时间：" + date1Str);
+		Date date1 = new Date();
+		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date1Str = sDateFormat.format(date1);
+		System.out.println("测试前时间：" + date1Str);
 
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			sortFunc.shellSort(arr1);
+			sortFunc.Sort(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
@@ -91,10 +92,10 @@ public class Checker {
 		}
 		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 
-        Date date2 = new Date();
-        String date2Str = sDateFormat.format(date2);
-        System.out.println("测试后时间：" + date2Str);
-        long t = date2.getTime() - date1.getTime();
-        System.out.println("用时 = " + t/1000.0 + "s");
+		Date date2 = new Date();
+		String date2Str = sDateFormat.format(date2);
+		System.out.println("测试后时间：" + date2Str);
+		long t = date2.getTime() - date1.getTime();
+		System.out.println("用时 = " + t / 1000.0 + "s");
 	}
 }

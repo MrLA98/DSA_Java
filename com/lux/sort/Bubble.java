@@ -7,17 +7,17 @@ import java.util.Arrays;
 public class Bubble {
     public static void main(String[] args) {
         int[] arr = new int[8];
-        for(int i = 0; i < 8; ++i){
-            arr[i] = (int)(Math.random()*8000000);
+        for (int i = 0; i < 8; ++i) {
+            arr[i] = (int) (Math.random() * 8000000);
         }
         System.out.println("排序前：" + Arrays.toString(arr));
         Bubble bubble = new Bubble();
-        bubble.bubbleSort2(arr);
+        bubble.Sort2(arr);
         System.out.println("排序后：" + Arrays.toString(arr));
     }
 
     // 冒泡排序1
-    public void bubbleSort(int[] arr) {
+    public void Sort(int[] arr) {
         for (int i = arr.length - 1; i > 0; --i) {
             for (int j = 0; j < i; ++j) {
                 if (arr[j] > arr[j + 1]) {
@@ -28,7 +28,7 @@ public class Bubble {
     }
 
     // 冒泡排序2
-    public void bubbleSort2(int[] arr) {
+    public void Sort2(int[] arr) {
         for (int i = arr.length - 1; i > 0; --i) {
             boolean flag = false; // 标识位
             for (int j = 0; j < i; ++j) {

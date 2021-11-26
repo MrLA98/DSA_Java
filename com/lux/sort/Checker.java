@@ -11,10 +11,10 @@ public class Checker {
 	}
 
 	// for test
-	public static int[] generateRandomArray(int maxSize, int maxValue) {
+	public static int[] generateRandomArray(int maxSize, int maxValue, int minValue) {
 		int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
 		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+			arr[i] = minValue + (int) (Math.random() * (maxValue - minValue + 1));
 		}
 		return arr;
 	}
@@ -65,14 +65,16 @@ public class Checker {
 	public static void main(String[] args) {
 		int testTime = 100;
 		int maxSize = 500000;
-		int maxValue = 500000;
+		int maxValue = 500;
+		int minValue = 0; // 基数排序时，最小值必须是0
 		boolean succeed = true;
 		// Bubble sortFunc = new Bubble(); // 冒泡
 		// Selection sortFunc = new Selection(); // 选择
 		// Insertion sortFunc = new Insertion(); // 插入
 		// Shell sortFunc = new Shell(); // 希尔
 		// Quick sortFunc = new Quick(); // 快排
-		Merge sortFunc = new Merge(); // 归并
+		// Merge sortFunc = new Merge(); // 归并
+		Radix sortFunc = new Radix(); // 基数
 
 		Date date1 = new Date();
 		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -80,7 +82,7 @@ public class Checker {
 		System.out.println("测试前时间：" + date1Str);
 
 		for (int i = 0; i < testTime; i++) {
-			int[] arr1 = generateRandomArray(maxSize, maxValue);
+			int[] arr1 = generateRandomArray(maxSize, maxValue, minValue);
 			int[] arr2 = copyArray(arr1);
 			sortFunc.Sort(arr1);
 			comparator(arr2);

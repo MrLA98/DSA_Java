@@ -67,8 +67,9 @@ public class Checker {
 		int maxSize = 100;
 		int maxValue = 100;
 		boolean succeed = true;
-        // Bubble sortFunc = new Bubble(); // 冒泡
-        Selection sortFunc = new Selection(); // 选择
+        // Bubble sortFunc = new Bubble(); // 冒泡 -- 3.52s
+        // Selection sortFunc = new Selection(); // 选择 -- 2.27s
+        Insertion sortFunc = new Insertion(); // 插入 -- 1.64s
 
         Date date1 = new Date();
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -78,7 +79,7 @@ public class Checker {
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			sortFunc.selectionSort(arr1);
+			sortFunc.insertionSort(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;

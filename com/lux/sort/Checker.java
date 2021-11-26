@@ -69,9 +69,10 @@ public class Checker {
 		boolean succeed = true;
 		// Bubble sortFunc = new Bubble(); // 冒泡
 		// Selection sortFunc = new Selection(); // 选择
-		Insertion sortFunc = new Insertion(); // 插入
+		// Insertion sortFunc = new Insertion(); // 插入
 		// Shell sortFunc = new Shell(); // 希尔
 		// Quick sortFunc = new Quick(); // 快排
+		Merge sortFunc = new Merge(); // 归并
 
 		Date date1 = new Date();
 		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

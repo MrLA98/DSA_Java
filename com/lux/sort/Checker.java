@@ -63,13 +63,14 @@ public class Checker {
 
 	// for test
 	public static void main(String[] args) {
-		int testTime = 500000;
-		int maxSize = 100;
+		int testTime = 1;
+		int maxSize = 500000;
 		int maxValue = 100;
 		boolean succeed = true;
-        // Bubble sortFunc = new Bubble(); // 冒泡 -- 3.52s
-        // Selection sortFunc = new Selection(); // 选择 -- 2.27s
-        Insertion sortFunc = new Insertion(); // 插入 -- 1.64s
+        // Bubble sortFunc = new Bubble(); // 冒泡 -- 3.52s -- 42.333s
+        // Selection sortFunc = new Selection(); // 选择 -- 2.27s -- 19.207s
+        // Insertion sortFunc = new Insertion(); // 插入 -- 1.64s -- 12.435s
+		Shell sortFunc = new Shell(); // 希尔 -- 1.93s -- 11.811s
 
         Date date1 = new Date();
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -79,7 +80,7 @@ public class Checker {
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			sortFunc.insertionSort(arr1);
+			sortFunc.shellSort(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;

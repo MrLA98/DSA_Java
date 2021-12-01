@@ -30,22 +30,22 @@ public class Heap {
     }
 
     // 将一个顺序二叉树（数组）调整为一个大顶堆
-    private void heapify(int arr[], int i, int len) {
-        int leftChild = 2 * i + 1;
-        int temp = arr[i];
+    private void heapify(int[] arr, int i, int len) {
+        int temp = arr[i]; // 保存该节点
+        int leftChild = 2 * i + 1; // 左孩子
         while (leftChild < len) {
-            // 找到i、i的左孩子、右孩子中最大的数的下标large
-            int large = leftChild + 1 < len && arr[leftChild + 1] > arr[leftChild] ? leftChild + 1 : leftChild; // 左右中较大的
+            // 先找出左右孩子里最大的对于下标
+            int large = leftChild + 1 < len && arr[leftChild + 1] > arr[leftChild] ? 
+                        leftChild + 1 : leftChild;
+            // 左孩子和父结点中更大的那个
             large = arr[large] > temp ? large : i;
-            // i就是最大的话直接退出
-            if (large == i)
-                break;
-            // 否则，最大的那个应该在i的位置
+            if (large == i) break; // 父亲大就直接退出，完成
+            // 否则，更大的那个孩子应该被放在父亲的位置
             arr[i] = arr[large];
-            // 要对large所在的子节点为头部的部分进行调整
+            // 接下来要以large位置为头继续进行调整
             i = large;
             leftChild = 2 * i + 1;
         }
-        arr[i] = temp;
+        arr[i] = temp; // ！！！！最终停下来的这个位置i，用来存放最开始的头节点
     }
 }

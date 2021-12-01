@@ -9,7 +9,7 @@ public class HuffmanTree {
         int arr[] = { 13, 7, 8, 3, 29, 6, 1 };
         HuffmanTree hTree = new HuffmanTree();
         Node root = hTree.createHuffmanTree(arr);
-        root.preOder();
+        root.preOrder();
     }
 
     public Node createHuffmanTree(int[] arr) {
@@ -46,12 +46,12 @@ class Node implements Comparable<Node> {
         this.value = value;
     }
 
-    public void preOder() {
+    public void preOrder() {
         System.out.println(this);
         if (this.left != null)
-            this.left.preOder();
+            this.left.preOrder();
         if (this.right != null)
-            this.right.preOder();
+            this.right.preOrder();
     }
 
     @Override

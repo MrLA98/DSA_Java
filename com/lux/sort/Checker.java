@@ -65,8 +65,8 @@ public class Checker {
 	public static void main(String[] args) {
 		int testTime = 100;
 		int maxSize = 500000;
-		int maxValue = 500;
-		int minValue = 0; // 基数排序时，最小值必须是0
+		int maxValue = 5000;
+		int minValue = -5000; // 基数排序时，最小值必须是0
 		boolean succeed = true;
 		// Bubble sortFunc = new Bubble(); // 冒泡
 		// Selection sortFunc = new Selection(); // 选择
@@ -74,7 +74,8 @@ public class Checker {
 		// Shell sortFunc = new Shell(); // 希尔
 		// Quick sortFunc = new Quick(); // 快排
 		// Merge sortFunc = new Merge(); // 归并
-		Radix sortFunc = new Radix(); // 基数
+		// Radix sortFunc = new Radix(); // 基数
+		Heap sortFunc = new Heap(); // 堆排序
 
 		Date date1 = new Date();
 		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

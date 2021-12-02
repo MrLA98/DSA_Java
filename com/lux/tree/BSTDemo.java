@@ -79,6 +79,10 @@ class BST {
         }
         // 有一个子树是空
         else {
+            if(parent == null){ // 只剩下头节点和其一边的子树了
+                root = target.left != null ? target.left : target.right;
+                return; // 直接修改root，让其为头节点的某个子树即可
+            }
             if (target.left != null) { // 左子树不为空
                 // 目标是其父亲的左孩子
                 if (parent.left != null && parent.left.value == target.value) {

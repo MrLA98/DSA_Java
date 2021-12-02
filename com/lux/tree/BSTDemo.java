@@ -2,13 +2,15 @@ package com.lux.tree;
 
 public class BSTDemo {
     public static void main(String[] args) {
-        int[] arr = { 4, 2, 6, 9, 1, 5, 7, 3, 0 };
+        int[] arr = { 4, 2, 6, 8, 9, 1, 5, 7, 3, 0 };
         BST bst = new BST();
         for (int item : arr) {
             bst.add(new BNode(item));
         }
         bst.infixOrder();
-        //System.out.println(bst.find(-1));
+        // System.out.println(bst.find(-1));
+        bst.del(6);
+        bst.infixOrder();
     }
 }
 
@@ -58,21 +60,51 @@ class BST {
             root = null;
             return;
         }
-        BNode parent = findParent(index);
+        BNode parent = findParent(index); // 找父亲节点
         // 叶子节点
         if (target.left == null && target.right == null) {
-            if (parent.left != null && parent.left.value == target.value)
+            // 是其父亲的左孩子，父亲左置空即可
+            if (parent.left != null && parent.left.value == target.value) {
                 parent.left = null;
-            else
+            } else { // 是其父亲的右孩子，父亲右置空即可
                 parent.right = null;
-            return;
-        // 左右子树都不为空
-        } else if(target.left != null && target.right != null){
-
-        // 有一个子树是空
-        } else{
-
+            }
         }
+        // 左右子树都不为空
+        else if (target.left != null && target.right != null) {
+            // 将右树最小的节点删掉，然后拿出来
+            BNode RightMin = delRightMin(target.right);
+            // 将其信息复制给target，target的左右孩子不变，父亲不变
+            target.value = RightMin.value;
+        }
+        // 有一个子树是空
+        else {
+            if (target.left != null) { // 左子树不为空
+                // 目标是其父亲的左孩子
+                if (parent.left != null && parent.left.value == target.value) {
+                    parent.left = target.left;
+                } else { // 目标是父亲的右孩子
+                    parent.right = target.left;
+                }
+            } else { // 右子树不为空
+                // 目标是其父亲的左孩子
+                if (parent.left != null && parent.left.value == target.value) {
+                    parent.left = target.right;
+                } else { // 目标是其父亲的右孩子
+                    parent.right = target.right;
+                }
+            }
+        }
+    }
+
+    // 传入右子树头节点，删除右子树最小的节点
+    private BNode delRightMin(BNode node) {
+        BNode cur = node;
+        while (cur.left != null) {
+            cur = cur.left;
+        }
+        del(cur.value);
+        return cur;
     }
 }
 

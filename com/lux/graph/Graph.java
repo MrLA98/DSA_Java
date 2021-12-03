@@ -2,26 +2,31 @@ package com.lux.graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Graph {
     public static void main(String[] args) {
-        int n = 5;
-        String vertexs[] = { "A", "B", "C", "D", "E" };
-        Graph graph = new Graph(n);
+        String vertexs[] = { "1", "2", "3", "4", "5", "6", "7", "8" };
+        Graph graph = new Graph(vertexs.length);
         for (String vertex : vertexs) {
             graph.insertVertex(vertex);
         }
-        // ab,ac,bc,bd,be,de
-        graph.insertEdge(0, 1, 1);
-        graph.insertEdge(0, 2, 1);
-        graph.insertEdge(1, 2, 1);
-        graph.insertEdge(1, 3, 1);
-        graph.insertEdge(1, 4, 1);
-        graph.insertEdge(3, 4, 1);
+        // 12,13,24,25,36,37,67,48,58
+        graph.insertEdge(0, 1, 1); // 12
+        graph.insertEdge(0, 2, 1); // 13
+        graph.insertEdge(1, 3, 1); // 24
+        graph.insertEdge(1, 4, 1); // 25
+        graph.insertEdge(2, 5, 1); // 36
+        graph.insertEdge(2, 6, 1); // 37
+        graph.insertEdge(5, 6, 1); // 67
+        graph.insertEdge(3, 7, 1); // 48
+        graph.insertEdge(4, 7, 1); // 58
 
         graph.showMarix();
 
         graph.dfs();
+        System.out.println();
+        graph.bfs();
     }
 
     private ArrayList<String> vertexList; // 顶点
@@ -76,25 +81,25 @@ public class Graph {
 
     // dfs
     // v1行，v2开始下一个不为0的边
-    private int getNextNeighbor(int v1, int v2){
-        for(int i = v2 + 1; i < vertexList.size(); ++i){
-            if(edges[v1][i] != 0) 
+    private int getNextNeighbor(int v1, int v2) {
+        for (int i = v2 + 1; i < vertexList.size(); ++i) {
+            if (edges[v1][i] != 0)
                 return i;
         }
         return -1;
     }
 
     // dfs -- 接口方法
-    public void dfs(){
+    public void dfs() {
         boolean[] bucket = new boolean[vertexList.size()];
-        for(int i = 0; i < vertexList.size(); ++i){
-            if(!bucket[i])
+        for (int i = 0; i < vertexList.size(); ++i) {
+            if (!bucket[i])
                 dfs(bucket, i);
         }
     }
 
     // dfs -- 实际实现
-    private void dfs(boolean[] bucket, int index){
+    private void dfs(boolean[] bucket, int index) {
         // 到达了就打印
         System.out.print(getItem(index) + "->");
         // 设为访问过
@@ -102,12 +107,49 @@ public class Graph {
         // 然后继续深度优先
         // 找nex的下一条边
         int nex = getNextNeighbor(index, -1);
-        while(nex != -1){
-            if(!bucket[nex]){ // 没访问过
-                dfs(bucket, nex);
+        while (nex != -1) {
+            if (!bucket[nex]) { // 没访问过
+                dfs(bucket, nex); // 一条路走到底
             }
-            // 没访问过
+            // 下一个
             nex = getNextNeighbor(index, nex);
+        }
+    }
+
+    // bfs
+    public void bfs() {
+        boolean[] bucket = new boolean[vertexList.size()];
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        for (int i = 0; i < vertexList.size(); ++i) {
+            if (!bucket[i]) {
+                bfs(bucket, queue, i);
+            }
+        }
+    }
+
+    // bfs -- 实际实现
+    private void bfs(boolean[] bucket, LinkedList<Integer> queue, int index) {
+        // 直接打印
+        System.out.print(getItem(index) + "=>");
+        // 标记为已经访问
+        bucket[index] = true;
+        // 加入队列
+        queue.addLast(index);
+        // 广度遍历
+        while (!queue.isEmpty()) {
+            // 队列弹出一个作为头节点
+            int u = queue.removeFirst();
+            // 以u为头节点找其邻接节点
+            int w = getNextNeighbor(u, -1);
+            while (w != -1) { // 找到一个有效的
+                if (!bucket[w]) { // 没遍历过
+                    System.out.print(getItem(w) + "=>"); // 打印
+                    bucket[w] = true; // 标记为已访问
+                    queue.addLast(w); // 放到队列尾部
+                }
+                // 向后寻找u的其他邻接顶点
+                w = getNextNeighbor(u, w);
+            }
         }
     }
 }

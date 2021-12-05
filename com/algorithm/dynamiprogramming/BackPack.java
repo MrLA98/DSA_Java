@@ -16,6 +16,7 @@ public class BackPack {
         // 动态规划解决问题
         System.out.println(DPsolution(it, 4));
         System.out.println(DPsolutionln(it, 4));
+        System.out.println(DPmemory(it, 4));
     }
 
     // 动态规划二维表
@@ -61,6 +62,30 @@ public class BackPack {
             System.out.println(Arrays.toString(dp[1]));
         }
         return dp[1][backPack];
+    }
+
+    // 记录选择方法的动态规划
+    public static int DPmemory(item[] it, int backPack){
+        int last[] = new int[backPack+1];
+        int dp[] = new int[backPack+1];
+        String mLast[] = new String[backPack+1];
+        String mNew[] = new String[backPack+1];
+        for(int i = 0; i < it.length; ++i){
+            for(int j = 1; j < dp.length; ++j){
+                if(it[i].weight <= j && last[j] < last[j-it[i].weight] + it[i].value){
+                    dp[j] = last[j-it[i].weight] + it[i].value;
+                    mNew[j] = mLast[j-it[i].weight] + it[i].name;
+                }else{
+                    dp[j] = last[j];
+                    mNew[j] = mLast[j];
+                }
+            }
+            last = dp;
+            mLast = mNew;
+            System.out.println(Arrays.toString(dp));
+            System.out.println(Arrays.toString(mNew));
+        }
+        return dp[backPack];
     }
 }
 

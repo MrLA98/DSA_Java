@@ -1,4 +1,4 @@
-package com.datastructure.search;
+package com.algorithm.search;
 
 public class Seq {
     public static void main(String[] args) {

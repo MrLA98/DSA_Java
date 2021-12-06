@@ -1,4 +1,4 @@
-package com.datastructure.search;
+package com.algorithm.search;
 
 public class Interpolation {
     public static void main(String[] args) {

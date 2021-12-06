@@ -1,4 +1,4 @@
-package com.datastructure.search;
+package com.algorithm.search;
 
 import java.util.Arrays;
 

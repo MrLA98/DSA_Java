@@ -1,4 +1,4 @@
-package com.datastructure.recursion;
+package com.algorithm.recursion;
 
 public class NQueens {
 

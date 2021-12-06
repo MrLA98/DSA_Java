@@ -1,4 +1,4 @@
-package com.algorithm.mst;
+package com.algorithm.graphAlgorithm.minimumspanningtree;
 
 import java.util.Arrays;
 

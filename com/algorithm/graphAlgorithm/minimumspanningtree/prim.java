@@ -1,4 +1,4 @@
-package com.algorithm.mst;
+package com.algorithm.graphAlgorithm.minimumspanningtree;
 
 // prim
 public class prim {

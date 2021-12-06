@@ -1,4 +1,4 @@
-package com.datastructure.avltree;
+package com.datastructure.tree.avltree;
 
 public class AVLTreeDemo {
     public static void main(String[] args) {

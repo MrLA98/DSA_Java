@@ -1,4 +1,4 @@
-package com.algorithm.divideconquer;
+package com.algorithm.special.divideconquer;
 
 public class HanoiTower {
     public static void main(String[] args) {
